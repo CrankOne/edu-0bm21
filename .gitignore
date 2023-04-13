@@ -1,0 +1,6 @@
+obj/*
+test
+
+*.swp
+*.swo
+*.vcproj
