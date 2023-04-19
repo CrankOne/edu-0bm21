@@ -1,44 +1,46 @@
-#include "scorer.hh"
+#include "../include/scorer.hh"
+#include <iostream>
 
-#include <algorithm>
+void Scorer::add(Float_t value) {
 
-Scorer::Scorer(unsigned char tierCapacity)
-        : _nValues(1 << tierCapacity) {}
+    const Float_t y = value - e;
+    const Float_t t = sum + y;
+    e = (t - sum) - y;
+    // std::cout.precision(15);
+    // if (value > (1e7 - 5)) std::cout << y << " " << t << " " << e << "\n";
+    sum = t;
+}
 
-static std::pair<bool, Float_t>
-_add_to_tier(Float_t * values, Float_t val, size_t c, size_t maxLen) {
-    // check number of elements at current tier
-    if((++c) == maxLen) {
-        // tier is full, calculate sum and collapse
-        std::sort(values, values + maxLen, std::greater<Float_t>());
-        // iterate with fixed stride calculating sums till the full tier
-        // capacity is depleted
-        size_t stride = 1;
-        while(stride != maxLen) {
-            for(std::size_t i = 0; i < maxLen; i += (stride << 1)) {
-                values[i] += values[i + stride]
+Float_t Scorer::get() const {
+    return sum;
+}
+
+/*void Scorer::add(Float_t value) {
+    Float_t coef = 0;
+    if (value != 0 || sum != 0) coef = (value/sum);
+    //if (value > (1e7 - 5))
+    //std::cout << coef << "\n";
+    if ((coef< 10 && coef > 0.1) || value == 0 || sum == 0) {
+        sum += value;
+    }
+    else {
+        if (sum < value) {
+            while (value >= sum * coef){
+                sum += value / coef;
+                value -= value / coef;
             }
-            stride <<= 1;
         }
-        // here all the values must be summed up in the first element
-        return {true, values[0]};
-    }
-    values[c]
-    return {false, 0};
-}
+        else {
+            Float_t buffer = sum;
+            Float_t val_buf = value;
+            while (buffer >= 1e6) {
+                val_buf += buffer * coef;
+                buffer -= buffer * coef;
 
-void
-Scorer::add(Float_t value) {
-    auto it = _sums.begin();
-    auto r = _add_to_tier(it->first, value, it->second, _nValues);
-    if(!r.first) {
-        ++(it->second);
-        return;
+                if (value > (1e7 - 2)) std::cout << "Buffer: "<< buffer << " value " << val_buf << "\n";
+            }
+            sum = val_buf;
+        }
     }
 }
-
-Float_t
-Scorer::get() const {
-    // ...
-}
-
+*/
