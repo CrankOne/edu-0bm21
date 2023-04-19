@@ -1,12 +1,12 @@
-#include "scorerN.hh"
+#include "scorer-simple-pairwise.hh"
 
 void
-Scorer::add(Float_t value) {
+ScorerSimplePairwise::add(Float_t value) {
   elements.push_back(value);
 }
 
 Float_t
-Scorer::get() const {
+ScorerSimplePairwise::get() const {
   Float_t sum = 0.;
   for (int i = 0; i < elements.size(); i+=2) {
     sum += elements[i];

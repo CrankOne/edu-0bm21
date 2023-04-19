@@ -1,8 +1,9 @@
 obj/%.o: src/%.cc
 	g++ -Iinclude -c $^ -o $@
 
-test: obj/scorer.o \
-	  obj/main.o
+test: obj/main.o \
+	  obj/scorer-simple-pairwise.o \
+	  obj/scorer-kb.o
 	g++ $^ -o $@
 
 clean:

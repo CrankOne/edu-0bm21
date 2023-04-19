@@ -1,7 +1,6 @@
-#include "../include/scorer.hh"
-#include <iostream>
+#include "scorer-kb.hh"
 
-void Scorer::add(Float_t value) {
+void ScorerKB::add(Float_t value) {
 
     const Float_t y = value - e;
     const Float_t t = sum + y;
@@ -11,7 +10,7 @@ void Scorer::add(Float_t value) {
     sum = t;
 }
 
-Float_t Scorer::get() const {
+Float_t ScorerKB::get() const {
     return sum;
 }
 
