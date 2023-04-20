@@ -11,7 +11,7 @@ public:
     void add(Float_t value) override;
     Float_t get() const override;
     std::vector<Float_t> elements;
+    std::string get_name() const override;
 };
 
 #endif  // H_SCORER_PAIRWISE_SIMPLE_H
-

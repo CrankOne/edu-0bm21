@@ -14,3 +14,7 @@ ScorerSimplePairwise::get() const {
   }
   return sum;
 }
+std::string
+ScorerSimplePairwise::get_name() const {
+  return "Simple Pairwise Scorer by BeHckuU";
+}
