@@ -3,7 +3,8 @@ obj/%.o: src/%.cc
 
 test: obj/main.o \
 	  obj/scorer-simple-pairwise.o \
-	  obj/scorer-kb.o
+	  obj/scorer-kb.o \
+	  obj/scorerP.o
 	g++ $^ -o $@
 
 clean:

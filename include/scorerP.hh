@@ -1,13 +1,16 @@
+#include "scorer.hh"
+
 #include <vector>
 typedef double Float_t;
 
 // Pairwise sum implementation
-class Scorer {
-public:
+class ScorerP : public iScorer {
+protected:
     std::vector <Float_t> data;
+public:
+    Float_t two_sum(Float_t &t, Float_t a, Float_t b) const;
 
-    void add(Float_t value);
-    Float_t get();
-    Float_t two_sum(Float_t &t, Float_t a, Float_t b);
+    void add(Float_t value) override;
+    Float_t get() const override;
 };
 
