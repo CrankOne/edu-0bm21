@@ -18,3 +18,6 @@ Float_t ScorerP::two_sum(Float_t &t, Float_t a, Float_t b) const {
   t = (b - bs) + (a - as);
   return s;
 }
+std::string ScorerP::get_name() const {
+    return typeid(*this).name();
+}

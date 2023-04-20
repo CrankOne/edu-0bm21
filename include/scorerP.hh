@@ -12,5 +12,6 @@ public:
 
     void add(Float_t value) override;
     Float_t get() const override;
+    std::string get_name() const override;
 };
 
