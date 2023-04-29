@@ -4,3 +4,4 @@ test
 *.swp
 *.swo
 *.vcproj
+*.gch

@@ -14,6 +14,9 @@ Float_t ScorerKB::get() const {
     return sum;
 }
 
+std::string ScorerKB::get_name() const {
+    return "Kahan algorithm";
+}
 /*void Scorer::add(Float_t value) {
     Float_t coef = 0;
     if (value != 0 || sum != 0) coef = (value/sum);
