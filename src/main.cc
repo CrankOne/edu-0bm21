@@ -5,10 +5,12 @@
 #include "scorerP.hh"
 #include "scorer-simple-pairwise.hh"
 
-int main(int argc, char * argv[]) {
-    //ScorerKB skb;
-    //ScorerSimplePairwise ssp;
-    
+int
+main(int argc, char * argv[]) {
+
+    G4ParticleTable::GetInstance();
+
+    #if 0
     iScorer * scorers[] = {
           new ScorerKB
         , new ScorerP
@@ -36,6 +38,7 @@ int main(int argc, char * argv[]) {
     }
 
     //<< "  diff = " << std::fabs(ctrl - s.get()) << std::endl;
+    #endif
     #endif
     return 0;
 }
