@@ -5,3 +5,5 @@ test
 *.swo
 *.vcproj
 *.gch
+.ccls
+libmcutils.so

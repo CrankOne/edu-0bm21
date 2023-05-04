@@ -5,13 +5,16 @@
 
 // Pairwise sum implementation
 class ScorerKB : public iScorer {
-public:
-    void add(Float_t value);
-    std::string get_name();
-    Float_t get() const;
-    double e = 0;
 private:
-    Float_t sum = 0;
+    double e;
+    Float_t sum;
+public:
+    void add(Float_t value) override;
+    Float_t get() const override;
+    std::string get_name() const override;
+
+    ScorerKB() : e(0), sum(0) {}
+    virtual ~ScorerKB() {}
 };
 
 #endif  // H_SCORER_KAHAN_BABUSKA_H
