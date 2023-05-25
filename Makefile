@@ -1,5 +1,5 @@
 G4CFLAGS=`geant4-config --cflags`
-G4LDFLAGS=`geant4-config --ldflags`
+G4LDFLAGS=`geant4-config --libs`
 
 obj/%.o: src/g4/%.cc
 	g++ ${G4CFLAGS} -fPIC -Iinclude -c $^ -o $@
@@ -15,14 +15,14 @@ libmcutils.so: obj/scorer-simple-pairwise.o \
 myProj: obj/main.o libmcutils.so
 	g++ $^ -o $@ ${G4LDFLAGS}
 
-test: libmcutils.so obj/main.o
-	g++ -L. obj/main.o -lmcutils -o $@ -Wl,-rpath ./
+#test: libmcutils.so
+#	g++ -L. obj/main.o -lmcutils -o $@ -Wl,-rpath ./
+
+all: myProj
 
 clean:
 	rm -f libmcutils.so myProj
 	rm -rf obj/*
-
-all: test
 
 .PHONY: all clean
 

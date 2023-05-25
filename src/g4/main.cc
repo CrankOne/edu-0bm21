@@ -3,6 +3,8 @@
 #include <QBBC.hh>
 #include <G4UImanager.hh>
 #include <G4UIExecutive.hh>
+#include <G4VisManager.hh>
+#include <G4VisExecutive.hh>
 
 //#include "DetectorConstruction.hh"
 
@@ -18,12 +20,16 @@ main(int argc, char * argv[]) {
 
     auto runMgr = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 
+     G4VisManager* visManager = new G4VisExecutive;
+
     //runManager->SetUserInitialization(new DetectorConstruction());
     G4VModularPhysicsList * physicsList = new QBBC;
     physicsList->SetVerboseLevel(1);
     //runManager->SetUserInitialization(physicsList);
 
     //runManager->SetUserInitialization(new ActionInitialization());
+
+    visManager->Initialize();
 
     G4UImanager* UImanager = G4UImanager::GetUIpointer();
     if ( ! ui ) {
@@ -39,7 +45,7 @@ main(int argc, char * argv[]) {
     }
 
     delete visManager;
-    delete runManager;
+    delete runMgr;
 
     return 0;
 }
