@@ -17,6 +17,7 @@ all: myProj
 # Main project executable
 myProj: obj/main.o \
 		obj/DetectorConstruction.o \
+		obj/PrimaryGeneratorAction.o \
 		obj/Geometry-hodoscope.o \
 		libmcutils.so
 	g++ $^ -o $@ ${G4LDFLAGS}

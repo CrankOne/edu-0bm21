@@ -7,6 +7,7 @@
 #include <G4VisExecutive.hh>
 
 #include "g4/DetectorConstruction.hh"
+#include "g4/PrimaryGeneratorAction.hh"
 
 int
 main(int argc, char * argv[]) {
@@ -26,6 +27,7 @@ main(int argc, char * argv[]) {
     runManager->SetUserInitialization(physicsList);
     // ... 3) initialization action
     //runManager->SetUserInitialization(new ActionInitialization());
+    runManager->SetUserAction(new PrimaryGeneratorAction());  // < XXX, deprecated API
 
     // Instantiate visualization
     G4VisManager* visManager = new G4VisExecutive;

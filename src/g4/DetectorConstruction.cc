@@ -7,6 +7,7 @@
 
 // include here your supplementary setup geometries, for instance
 #include "g4/Geometry-hodoscope.hh"
+#include "g4/Geometry-calorimeter.hh"
 
 DetectorConstruction::DetectorConstruction( bool doCheckOverlaps )
     : _doCheckOverlaps(doCheckOverlaps) {
@@ -41,6 +42,21 @@ DetectorConstruction::Construct() {
     #if 1
     // ... TODO: create other geometry here, for instance:
     G4LogicalVolume * logicHodoscope = create_hodoscope( _doCheckOverlaps );
+    new G4PVPlacement(
+              nullptr  // rotation matrix (no rotation)
+            , G4ThreeVector(0, 0, 0)  // at (0,0,0)
+            , logicHodoscope  // its logical volume
+            , "hodoscope"  // its name
+            , logicHall  // its mother volume
+            , false  // no boolean operation
+            , 0  // copy number
+            , _doCheckOverlaps  // checking overlaps
+            );
+    #endif
+
+    #if 0
+    // ... TODO: create other geometry here, for instance:
+    G4LogicalVolume * logicCalorimeter = create_calorimeter( _doCheckOverlaps );
     new G4PVPlacement(
               nullptr  // rotation matrix (no rotation)
             , G4ThreeVector(0, 0, 0)  // at (0,0,0)
