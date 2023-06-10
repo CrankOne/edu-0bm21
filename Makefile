@@ -1,16 +1,36 @@
-obj/%.o: src/%.cc
-	g++ -Iinclude -c $^ -o $@
+# General C/C++ compile flags
+CFLAGS=-Wall -g -ggdb
+# C/C++ compile flags for Geant4-related sources
+G4CFLAGS:=$(shell geant4-config --cflags)
+# linkage flags for Geant4-related libraries and utils
+G4LDFLAGS:=$(shell geant4-config --libs) -lG4tasking -lG4ptl
 
-test: obj/main.o \
-	  obj/scorer-simple-pairwise.o \
+# Rule to compile object files from sources from src/g4/ dir
+obj/%.o: src/g4/%.cc
+	g++ ${G4CFLAGS} -fPIC -Iinclude -c $^ -o $@
+# Rule to compile object files from src/util/ dir
+obj/%.o: src/util/%.cc
+	g++ -fPIC -Iinclude/util -c $^ -o $@
+
+all: myProj
+
+# Main project executable
+myProj: obj/main.o \
+		obj/DetectorConstruction.o \
+		obj/PrimaryGeneratorAction.o \
+		obj/Geometry-hodoscope.o \
+		obj/Geometry-calorimeter.o \
+		libmcutils.so
+	g++ $^ -o $@ ${G4LDFLAGS}
+
+# Library with common utilities
+libmcutils.so: obj/scorer-simple-pairwise.o \
 	  obj/scorer-kb.o \
 	  obj/scorerP.o
-	g++ $^ -o $@
+	g++ $^ -shared -o $@
 
 clean:
-	rm -f test
-	rm obj/*
-
-all: test
+	rm -f libmcutils.so myProj
+	rm -rf obj/*
 
 .PHONY: all clean
