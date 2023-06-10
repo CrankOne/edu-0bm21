@@ -65,4 +65,3 @@ create_hodoscope( bool checkOverlaps ) {
                 );
     return logicHodoscopePlane;
 }
-

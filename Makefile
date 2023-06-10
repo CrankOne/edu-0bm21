@@ -3,7 +3,7 @@ CFLAGS=-Wall -g -ggdb
 # C/C++ compile flags for Geant4-related sources
 G4CFLAGS:=$(shell geant4-config --cflags)
 # linkage flags for Geant4-related libraries and utils
-G4LDFLAGS:=$(shell geant4-config --libs)
+G4LDFLAGS:=$(shell geant4-config --libs) -lG4tasking -lG4ptl
 
 # Rule to compile object files from sources from src/g4/ dir
 obj/%.o: src/g4/%.cc
@@ -19,6 +19,7 @@ myProj: obj/main.o \
 		obj/DetectorConstruction.o \
 		obj/PrimaryGeneratorAction.o \
 		obj/Geometry-hodoscope.o \
+		obj/Geometry-calorimeter.o \
 		libmcutils.so
 	g++ $^ -o $@ ${G4LDFLAGS}
 
@@ -33,4 +34,3 @@ clean:
 	rm -rf obj/*
 
 .PHONY: all clean
-

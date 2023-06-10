@@ -39,7 +39,7 @@ DetectorConstruction::Construct() {
             , _doCheckOverlaps
             );
 
-    #if 1
+    #if 0
     // ... TODO: create other geometry here, for instance:
     G4LogicalVolume * logicHodoscope = create_hodoscope( _doCheckOverlaps );
     new G4PVPlacement(
@@ -54,14 +54,14 @@ DetectorConstruction::Construct() {
             );
     #endif
 
-    #if 0
+    #if 1
     // ... TODO: create other geometry here, for instance:
     G4LogicalVolume * logicCalorimeter = create_calorimeter( _doCheckOverlaps );
     new G4PVPlacement(
               nullptr  // rotation matrix (no rotation)
             , G4ThreeVector(0, 0, 0)  // at (0,0,0)
-            , logicHodoscope  // its logical volume
-            , "hodoscope"  // its name
+            , logicCalorimeter  // its logical volume
+            , "calorimeter"  // its name
             , logicHall  // its mother volume
             , false  // no boolean operation
             , 0  // copy number
@@ -72,4 +72,3 @@ DetectorConstruction::Construct() {
     // return ptr to topmost (world) volume
     return physHall;
 }
-
