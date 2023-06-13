@@ -1,6 +1,10 @@
 obj/*
 test
-
+myProj
 *.swp
 *.swo
 *.vcproj
+*.gch
+.ccls
+libmcutils.so
+G4History.macro
