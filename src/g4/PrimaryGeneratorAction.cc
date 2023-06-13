@@ -13,9 +13,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
     _pGun = new G4ParticleGun(1);
 
     _pGun->SetParticleDefinition( G4ParticleTable::GetParticleTable()
-                ->FindParticle("pi0") );
+                ->FindParticle("J/psi") );
     _pGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
-    _pGun->SetParticleEnergy(6.*CLHEP::MeV);
-    _pGun->SetParticlePosition(G4ThreeVector(-2.5*CLHEP::m, 0, 0));
+    _pGun->SetParticleEnergy(160*CLHEP::GeV);
+    _pGun->SetParticlePosition(G4ThreeVector(0, 0, -12.5*CLHEP::m));
 }
 

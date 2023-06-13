@@ -7,3 +7,4 @@ myProj
 *.gch
 .ccls
 libmcutils.so
+G4History.macro

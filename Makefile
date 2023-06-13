@@ -3,7 +3,8 @@ CFLAGS=-Wall -g -ggdb
 # C/C++ compile flags for Geant4-related sources
 G4CFLAGS:=$(shell geant4-config --cflags)
 # linkage flags for Geant4-related libraries and utils
-G4LDFLAGS:=$(shell geant4-config --libs) -lG4tasking -lG4ptl
+#G4LDFLAGS:=$(shell geant4-config --libs) -lG4tasking -lG4ptl
+G4LDFLAGS:=$(shell geant4-config --libs) -Wl,-rpath,/home/rdusaev/Sw/lib
 
 # Rule to compile object files from sources from src/g4/ dir
 obj/%.o: src/g4/%.cc
@@ -18,8 +19,11 @@ all: myProj
 myProj: obj/main.o \
 		obj/DetectorConstruction.o \
 		obj/PrimaryGeneratorAction.o \
+		obj/ActionInitialization.o \
 		obj/Geometry-hodoscope.o \
 		obj/Geometry-calorimeter.o \
+		obj/SD-hodoscope.o \
+		obj/SD-calorimeter.o \
 		libmcutils.so
 	g++ $^ -o $@ ${G4LDFLAGS}
 

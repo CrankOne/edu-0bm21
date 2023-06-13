@@ -4,10 +4,15 @@
 #include <G4Box.hh>
 #include <G4LogicalVolume.hh>
 #include <G4PVPlacement.hh>
+#include <G4SDManager.hh>
 
 // include here your supplementary setup geometries, for instance
+// - hodoscope
 #include "g4/Geometry-hodoscope.hh"
+#include "g4/SD-hodoscope.hh"
+// - calorimeter
 #include "g4/Geometry-calorimeter.hh"
+#include "g4/SD-calorimeter.hh"
 
 DetectorConstruction::DetectorConstruction( bool doCheckOverlaps )
     : _doCheckOverlaps(doCheckOverlaps) {
@@ -20,7 +25,7 @@ DetectorConstruction::Construct() {
     G4VSolid * solidHall = new G4Box( "World"  // name
             , 1*CLHEP::m/2  // size x
             , 1*CLHEP::m/2  // size y
-            , 5*CLHEP::m/2  // size z
+            , 25.1*CLHEP::m/2  // size z
             );
     // - logical volume -- a solid filled with certain material
     G4LogicalVolume * logicHall = new G4LogicalVolume( solidHall  // solid (to fill)
@@ -72,3 +77,24 @@ DetectorConstruction::Construct() {
     // return ptr to topmost (world) volume
     return physHall;
 }
+
+void
+DetectorConstruction::ConstructSDandField() {
+    #if 1
+    auto hodoSD = new HodoscopeSensitiveDetector("hodoX");
+    G4SDManager::GetSDMpointer()->AddNewDetector(hodoSD);
+    SetSensitiveDetector( "hodoscopeSlab"  //< Note: must exist
+                        , hodoSD
+                        );
+    #endif
+
+    #if 0
+    // ... TODO: bind calorimeter sensitive detector with scintillator volume
+    auto caloSD = new CaloSensitiveDetector("caloScint");
+    G4SDManager::GetSDMpointer()->AddNewDetector(hodoSD);
+    SetSensitiveDetector( "caloScintVolume"  //< Note: must exist
+                        , hodoSD
+                        );
+    #endif
+}
+
