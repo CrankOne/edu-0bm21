@@ -12,6 +12,10 @@ public:
     // topmost volume in the hierarchy
     G4VPhysicalVolume* Construct() override;
 
+    // overrides virtual method -- constructs and binds sensitive detector
+    // instances with certain volumes
+    void ConstructSDandField() override;
+
     // ctr
     DetectorConstruction(bool doCheckOverlaps);
 private:
