@@ -7,7 +7,7 @@
 #include "g4/Geometry-hetero-calorimeter.hh"
 
 G4LogicalVolume *
-create_calorimeter( bool checkOverlaps ) {
+create_hetero_calorimeter( bool checkOverlaps ) {
     // NOTE: albeit `checkOverlaps' is not used here, for more elaborated
     // examples it can be used still, when placements appear
     float sensitiveAreaWidth  = 3*CLHEP::cm

@@ -13,7 +13,7 @@ obj/%.o: src/g4/%.cc
 obj/%.o: src/util/%.cc
 	g++ -fPIC -Iinclude/util -c $^ -o $@
 
-all: myProj
+all: myProj 
 
 # Main project executable
 myProj: obj/main.o \

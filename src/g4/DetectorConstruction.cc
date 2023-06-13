@@ -45,7 +45,7 @@ DetectorConstruction::Construct() {
             , _doCheckOverlaps
             );
 
-    #if 0
+    #if 1
     // ... TODO: create other geometry here, for instance:
     G4LogicalVolume * logicHodoscope = create_hodoscope( _doCheckOverlaps );
     new G4PVPlacement(
@@ -60,13 +60,13 @@ DetectorConstruction::Construct() {
             );
     #endif
 
-    #if 0
+    #if 1
     // ... TODO: create other geometry here, for instance:
-    G4LogicalVolume * logicCalorimeter = create_hetero_calorimeter( _doCheckOverlaps );
+    G4LogicalVolume * logicHeteroCalorimeter = create_hetero_calorimeter( _doCheckOverlaps );
     new G4PVPlacement(
               nullptr  // rotation matrix (no rotation)
-            , G4ThreeVector(0, 0, 0)  // at (0,0,0)
-            , logicCalorimeter  // its logical volume
+            , G4ThreeVector(0, 0, 1*CLHEP::m)  // at (0,0,0)
+            , logicHeteroCalorimeter  // its logical volume
             , "calorimeter"  // its name
             , logicHall  // its mother volume
             , false  // no boolean operation
@@ -75,13 +75,13 @@ DetectorConstruction::Construct() {
             );
     #endif
 
-    #if 0
+    #if 1
     // ... TODO: create other geometry here, for instance:
-    G4LogicalVolume * logicCalorimeter = create_homo_calorimeter( _doCheckOverlaps );
+    G4LogicalVolume * logicHomoCalorimeter = create_homo_calorimeter( _doCheckOverlaps );
     new G4PVPlacement(
               nullptr  // rotation matrix (no rotation)
-            , G4ThreeVector(0, 0, 0)  // at (0,0,0)
-            , logicCalorimeter  // its logical volume
+            , G4ThreeVector(0, 0, 2*CLHEP::m)  // at (0,0,0)
+            , logicHomoCalorimeter  // its logical volume
             , "calorimeter"  // its name
             , logicHall  // its mother volume
             , false  // no boolean operation

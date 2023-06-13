@@ -10,8 +10,8 @@ G4LogicalVolume *
 create_homo_calorimeter( bool checkOverlaps ) {
     // NOTE: albeit `checkOverlaps' is not used here, for more elaborated
     // examples it can be used still, when placements appear
-    float sensitiveAreaWidth  = 3*CLHEP::cm
-        , sensitiveAreaHeight = 2*CLHEP::cm
+    float sensitiveAreaWidth  = 10*CLHEP::cm
+        , sensitiveAreaHeight = 20*CLHEP::cm
         , slabDepth = 10*CLHEP::cm
         ;
     //int nSlabs = 10;
