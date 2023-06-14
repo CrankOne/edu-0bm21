@@ -15,8 +15,10 @@
 #include "g4/Geometry-hetero-calorimeter.hh"
 #include "g4/SD-calorimeter.hh"
 
-DetectorConstruction::DetectorConstruction( bool doCheckOverlaps )
-    : _doCheckOverlaps(doCheckOverlaps) {
+DetectorConstruction::DetectorConstruction( bool doCheckOverlaps, const std::string & scorerName )
+    : _doCheckOverlaps(doCheckOverlaps)
+    , _scorerName(scorerName)
+    {
 }
 
 G4VPhysicalVolume *
@@ -96,7 +98,7 @@ DetectorConstruction::Construct() {
 void
 DetectorConstruction::ConstructSDandField() {
     #if 1
-    auto hodoSD = new HodoscopeSensitiveDetector("hodoX");
+    auto hodoSD = new HodoscopeSensitiveDetector("hodoX", _scorerName);
     G4SDManager::GetSDMpointer()->AddNewDetector(hodoSD);
     SetSensitiveDetector( "hodoscopeSlab"  //< Note: must exist
                         , hodoSD

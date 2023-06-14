@@ -21,7 +21,9 @@ main(int argc, char * argv[]) {
     auto * runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
     // ... and set 1) detector construction instance to create geometry
     //     and sensitive detectors:
-    runManager->SetUserInitialization(new DetectorConstruction(true /*checkOverlaps*/));
+    runManager->SetUserInitialization(new DetectorConstruction(
+                true /*checkOverlaps*/,
+                "simple-pairwise" /*scorer name*/ ));
     // ... 2) physics list to define considered simulation processes
     G4VModularPhysicsList* physicsList = new QBBC;
     runManager->SetUserInitialization(physicsList);

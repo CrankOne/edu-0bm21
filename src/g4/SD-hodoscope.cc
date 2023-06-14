@@ -1,7 +1,9 @@
 #include "g4/SD-hodoscope.hh"
 
-HodoscopeSensitiveDetector::HodoscopeSensitiveDetector(const G4String & sdName)
+HodoscopeSensitiveDetector::HodoscopeSensitiveDetector(const G4String & sdName,
+        const std::string & scorerName)
     : G4VSensitiveDetector(sdName)
+    , _scorerName(scorerName)
     {}
 
 void

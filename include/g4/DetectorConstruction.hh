@@ -17,8 +17,9 @@ public:
     void ConstructSDandField() override;
 
     // ctr
-    DetectorConstruction(bool doCheckOverlaps);
+    DetectorConstruction(bool doCheckOverlaps, const std::string & scorerName);
 private:
     bool _doCheckOverlaps;
+    const std::string _scorerName;
 };  // class DetectorConstruction
 
