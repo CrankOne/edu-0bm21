@@ -13,5 +13,9 @@ struct iScorer {
     virtual std::string get_name() const = 0;
 };
 
+// Factory method: instantiates particular scorer class, returns ptr to a new
+// instance
+iScorer * create_scorer(const std::string &);
+
 #endif  // H_SCORER_H
 

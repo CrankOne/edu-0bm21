@@ -54,7 +54,6 @@ create_hodoscope( bool checkOverlaps ) {
                 , nSlabs  // # replicas
                 , sensitiveAreaWidth/nSlabs  // width of replica (stride)
                 );
-
     G4VSolid * solidHodoscopePlane_mom
         = new G4Box( "hodoscopePlane"
                    , sensitiveAreaWidth/2
@@ -90,4 +89,3 @@ create_hodoscope( bool checkOverlaps ) {
         , checkOverlaps );        // checking overlaps
     return logicHodoscopePlane_mom;
 }
-//
